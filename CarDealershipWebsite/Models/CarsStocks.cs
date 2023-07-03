@@ -20,7 +20,7 @@ namespace CarDealershipWebsite.Models
 
         public int StoreId { get; set; }
 
-        [ForeignKey("StorelId")]
+        [ForeignKey("StoreId")]
         public Store Store { get; set; }
 
         public string LicensePlate { get; set; } = null!;

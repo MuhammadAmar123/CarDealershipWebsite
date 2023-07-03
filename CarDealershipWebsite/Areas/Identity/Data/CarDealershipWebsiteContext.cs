@@ -30,7 +30,7 @@ public class CarDealershipWebsiteContext : IdentityDbContext<CarDealershipWebsit
     public DbSet<Sale> Sales { get; set; }
     public DbSet<SaleItem> SaleItems { get; set; }
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<Staff> Staff { get; set; }
+    public DbSet<Staff> Staffs { get; set; }
     public DbSet<Store> Stores { get; set; }
 
 }

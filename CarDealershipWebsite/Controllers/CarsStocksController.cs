@@ -22,7 +22,7 @@ namespace CarDealershipWebsite.Controllers
         // GET: CarsStocks
         public async Task<IActionResult> Index()
         {
-            var carDealershipWebsiteContext = _context.CarsStocks.Include(c => c.Model);
+            var carDealershipWebsiteContext = _context.CarsStocks.Include(c => c.Model).Include(c => c.Store);
             return View(await carDealershipWebsiteContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace CarDealershipWebsite.Controllers
 
             var carsStock = await _context.CarsStocks
                 .Include(c => c.Model)
+                .Include(c => c.Store)
                 .FirstOrDefaultAsync(m => m.StockID == id);
             if (carsStock == null)
             {
@@ -49,6 +50,7 @@ namespace CarDealershipWebsite.Controllers
         public IActionResult Create()
         {
             ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID");
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID");
             return View();
         }
 
@@ -59,13 +61,14 @@ namespace CarDealershipWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StockID,CarsModelId,Year,Mileage,Sold,Price,StoreId,LicensePlate")] CarsStock carsStock)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(carsStock);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
             return View(carsStock);
         }
 
@@ -83,6 +86,7 @@ namespace CarDealershipWebsite.Controllers
                 return NotFound();
             }
             ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
             return View(carsStock);
         }
 
@@ -98,7 +102,7 @@ namespace CarDealershipWebsite.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -119,6 +123,7 @@ namespace CarDealershipWebsite.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
             return View(carsStock);
         }
 
@@ -132,6 +137,7 @@ namespace CarDealershipWebsite.Controllers
 
             var carsStock = await _context.CarsStocks
                 .Include(c => c.Model)
+                .Include(c => c.Store)
                 .FirstOrDefaultAsync(m => m.StockID == id);
             if (carsStock == null)
             {

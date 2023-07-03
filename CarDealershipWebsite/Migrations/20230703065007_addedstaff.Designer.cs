@@ -4,6 +4,7 @@ using CarDealershipWebsite.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealershipWebsite.Migrations
 {
     [DbContext(typeof(CarDealershipWebsiteContext))]
-    partial class CarDealershipWebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230703065007_addedstaff")]
+    partial class addedstaff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +112,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("BrandID");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.CarsModel", b =>
@@ -152,7 +155,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("TransmissionId");
 
-                    b.ToTable("CarsModels", (string)null);
+                    b.ToTable("CarsModels");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.CarsStock", b =>
@@ -182,6 +185,9 @@ namespace CarDealershipWebsite.Migrations
                     b.Property<int>("StoreId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StorelId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
@@ -189,9 +195,9 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("CarsModelId");
 
-                    b.HasIndex("StoreId");
+                    b.HasIndex("StorelId");
 
-                    b.ToTable("CarsStocks", (string)null);
+                    b.ToTable("CarsStocks");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Customer", b =>
@@ -228,7 +234,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("CustomerID");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Fuel", b =>
@@ -245,7 +251,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("FuelID");
 
-                    b.ToTable("Fuels", (string)null);
+                    b.ToTable("Fuels");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Sale", b =>
@@ -266,7 +272,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Sales", (string)null);
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.SaleItem", b =>
@@ -289,7 +295,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleItems", (string)null);
+                    b.ToTable("SaleItems");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Staff", b =>
@@ -331,7 +337,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Staffs", (string)null);
+                    b.ToTable("Staffs");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Store", b =>
@@ -356,7 +362,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("StoreID");
 
-                    b.ToTable("Stores", (string)null);
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Transmission", b =>
@@ -373,7 +379,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("TransmissionID");
 
-                    b.ToTable("Transmissions", (string)null);
+                    b.ToTable("Transmissions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -550,7 +556,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasOne("CarDealershipWebsite.Models.Store", "Store")
                         .WithMany("CarsStocks")
-                        .HasForeignKey("StoreId")
+                        .HasForeignKey("StorelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

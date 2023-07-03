@@ -12,12 +12,24 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale.SaleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock.StockID)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SaleItemID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SaleItemID">Details</a> |

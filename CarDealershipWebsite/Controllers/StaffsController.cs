@@ -22,19 +22,19 @@ namespace CarDealershipWebsite.Controllers
         // GET: Staffs
         public async Task<IActionResult> Index()
         {
-            var carDealershipWebsiteContext = _context.Staff.Include(s => s.Store);
+            var carDealershipWebsiteContext = _context.Staffs.Include(s => s.Store);
             return View(await carDealershipWebsiteContext.ToListAsync());
         }
 
         // GET: Staffs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Staff == null)
+            if (id == null || _context.Staffs == null)
             {
                 return NotFound();
             }
 
-            var staff = await _context.Staff
+            var staff = await _context.Staffs
                 .Include(s => s.Store)
                 .FirstOrDefaultAsync(m => m.StaffID == id);
             if (staff == null)
@@ -59,7 +59,7 @@ namespace CarDealershipWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StaffID,FirstName,LastName,PhoneNumber,Address,StoreId,EmailAddress,City")] Staff staff)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(staff);
                 await _context.SaveChangesAsync();
@@ -72,12 +72,12 @@ namespace CarDealershipWebsite.Controllers
         // GET: Staffs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Staff == null)
+            if (id == null || _context.Staffs == null)
             {
                 return NotFound();
             }
 
-            var staff = await _context.Staff.FindAsync(id);
+            var staff = await _context.Staffs.FindAsync(id);
             if (staff == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace CarDealershipWebsite.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -125,12 +125,12 @@ namespace CarDealershipWebsite.Controllers
         // GET: Staffs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Staff == null)
+            if (id == null || _context.Staffs == null)
             {
                 return NotFound();
             }
 
-            var staff = await _context.Staff
+            var staff = await _context.Staffs
                 .Include(s => s.Store)
                 .FirstOrDefaultAsync(m => m.StaffID == id);
             if (staff == null)
@@ -146,14 +146,14 @@ namespace CarDealershipWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Staff == null)
+            if (_context.Staffs == null)
             {
-                return Problem("Entity set 'CarDealershipWebsiteContext.Staff'  is null.");
+                return Problem("Entity set 'CarDealershipWebsiteContext.Staffs'  is null.");
             }
-            var staff = await _context.Staff.FindAsync(id);
+            var staff = await _context.Staffs.FindAsync(id);
             if (staff != null)
             {
-                _context.Staff.Remove(staff);
+                _context.Staffs.Remove(staff);
             }
             
             await _context.SaveChangesAsync();
@@ -162,7 +162,7 @@ namespace CarDealershipWebsite.Controllers
 
         private bool StaffExists(int id)
         {
-          return (_context.Staff?.Any(e => e.StaffID == id)).GetValueOrDefault();
+          return (_context.Staffs?.Any(e => e.StaffID == id)).GetValueOrDefault();
         }
     }
 }

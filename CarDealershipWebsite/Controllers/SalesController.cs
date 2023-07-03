@@ -22,9 +22,8 @@ namespace CarDealershipWebsite.Controllers
         // GET: Sales
         public async Task<IActionResult> Index()
         {
-              return _context.Sales != null ? 
-                          View(await _context.Sales.ToListAsync()) :
-                          Problem("Entity set 'CarDealershipWebsiteContext.Sales'  is null.");
+            var carDealershipWebsiteContext = _context.Sales.Include(s => s.Customer);
+            return View(await carDealershipWebsiteContext.ToListAsync());
         }
 
         // GET: Sales/Details/5
@@ -36,6 +35,7 @@ namespace CarDealershipWebsite.Controllers
             }
 
             var sale = await _context.Sales
+                .Include(s => s.Customer)
                 .FirstOrDefaultAsync(m => m.SaleID == id);
             if (sale == null)
             {
@@ -48,6 +48,7 @@ namespace CarDealershipWebsite.Controllers
         // GET: Sales/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerID", "CustomerID");
             return View();
         }
 
@@ -56,14 +57,15 @@ namespace CarDealershipWebsite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SaleID,SaleDate")] Sale sale)
+        public async Task<IActionResult> Create([Bind("SaleID,CustomerId,SaleDate")] Sale sale)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(sale);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerID", "CustomerID", sale.CustomerId);
             return View(sale);
         }
 
@@ -80,6 +82,7 @@ namespace CarDealershipWebsite.Controllers
             {
                 return NotFound();
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerID", "CustomerID", sale.CustomerId);
             return View(sale);
         }
 
@@ -88,14 +91,14 @@ namespace CarDealershipWebsite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SaleID,SaleDate")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("SaleID,CustomerId,SaleDate")] Sale sale)
         {
             if (id != sale.SaleID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -115,6 +118,7 @@ namespace CarDealershipWebsite.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerID", "CustomerID", sale.CustomerId);
             return View(sale);
         }
 
@@ -127,6 +131,7 @@ namespace CarDealershipWebsite.Controllers
             }
 
             var sale = await _context.Sales
+                .Include(s => s.Customer)
                 .FirstOrDefaultAsync(m => m.SaleID == id);
             if (sale == null)
             {
