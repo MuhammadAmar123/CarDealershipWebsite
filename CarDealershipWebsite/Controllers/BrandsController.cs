@@ -58,7 +58,7 @@ namespace CarDealershipWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BrandID,BrandName")] Brand brand)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(brand);
                 await _context.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace CarDealershipWebsite.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
