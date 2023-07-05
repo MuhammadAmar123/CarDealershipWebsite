@@ -29,10 +29,10 @@ namespace CarDealershipWebsite.Models
         [RegularExpression("^[0-9]{1,3}[a-zA-Z\\s]*$", ErrorMessage = "Please enter valid address")]
         public string Address { get; set; } = null!;
         [Required]
-        [Display(Name = "Store Number")]
+        [Display(Name = "Store")]
         public int StoreId { get; set; }
         [ForeignKey("StoreId")]
-        [Display(Name = "Store Number")]
+        [Display(Name = "Store")]
         public Store Store { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
