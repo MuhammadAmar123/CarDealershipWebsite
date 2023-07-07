@@ -13,7 +13,7 @@ namespace CarDealershipWebsite.Models
         [Display(Name = "Car Model Number")]
         public CarsModel Model { get; set; }
         [Required]
-        [RegularExpression(@"^(19|20)\d{2}$", ErrorMessage = "Please enter a valid year (E.g 2012)")]
+        [Range(1950, 2100, ErrorMessage = "Please enter a valid year")]
 
         public int Year { get; set; }
         [Required]

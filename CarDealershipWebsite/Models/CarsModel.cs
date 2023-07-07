@@ -12,15 +12,16 @@ namespace CarDealershipWebsite.Models
         [ForeignKey("BrandId")]
         public Brand Brand { get; set; }
         [Required]
+        [StringLength(30, ErrorMessage = "Field must be less than 30 characters")]
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")]
 
         public string Model { get; set; } = null!;
         [Required]
-        [StringLength(30, ErrorMessage = "Field must be less than 30 characters")]
-        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed.")]
+        [Range(0, 10, ErrorMessage = "Please enter a valid seat range. (Between 0-10)")]
 
         public int Seats { get; set; }
         [Required]
-        [RegularExpression(@"^[0-9]+cc$", ErrorMessage = "Field must include only numbers and cc after the numbers.")]
+        [RegularExpression(@"^[0-9]+cc$", ErrorMessage = "Field must include only numbers and cc after the numbers")]
         [Display(Name = "Engine Size")]
 
         public string EngineSize { get; set; } = null!;
