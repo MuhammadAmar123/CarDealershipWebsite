@@ -25,7 +25,7 @@ namespace CarDealershipWebsite.Models
         public bool Sold { get; set; }
         [Required]
         [Range(0, 999999, ErrorMessage = "Please enter a 6-digit number")]
-
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
         [Required]
         [Display(Name = "Store")]
