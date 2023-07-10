@@ -9,7 +9,7 @@ namespace CarDealershipWebsite.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the CarDealershipWebsiteUser class
 public class CarDealershipWebsiteUser : IdentityUser
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
 }
 

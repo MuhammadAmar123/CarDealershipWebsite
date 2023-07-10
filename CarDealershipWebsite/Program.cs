@@ -63,25 +63,23 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CarDealershipWebsiteUser>>();
-            string email = "admin@admin.com";
-            string password = "Admin_54321";
+            var users = await userManager.Users.ToListAsync();
 
-            if (await userManager.FindByEmailAsync(email) == null)
+            var excludedEmails = new List<string> { "admin@admin.com" };
+
+            foreach (var user in users)
             {
-                var user = new CarDealershipWebsiteUser();
-                user.UserName = email;
-                user.Email = email;
-
-
-                await userManager.CreateAsync(user, password);
-
-                await userManager.AddToRoleAsync(user, "Admin");
-
+                if (!excludedEmails.Contains(user.Email))
+                {
+                    await userManager.AddToRoleAsync(user, "User");
+                }
             }
+        }
 
-        } app.Run();
+        app.Run();
 
     }
+}
 
-}   
+
 
