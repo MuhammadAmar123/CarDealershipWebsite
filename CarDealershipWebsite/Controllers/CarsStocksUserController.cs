@@ -7,30 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarDealershipWebsite.Areas.Identity.Data;
 using CarDealershipWebsite.Models;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
 namespace CarDealershipWebsite.Controllers
 {
-    [Authorize(Roles = "Admin")]
-
-    public class CarsStocksController : Controller
+    public class CarsStocksUserController : Controller
     {
         private readonly CarDealershipWebsiteContext _context;
 
-        public CarsStocksController(CarDealershipWebsiteContext context)
+        public CarsStocksUserController(CarDealershipWebsiteContext context)
         {
             _context = context;
         }
 
-        // GET: CarsStocks
+        // GET: CarsStocksUser
         public async Task<IActionResult> Index()
         {
             var carDealershipWebsiteContext = _context.CarsStocks.Include(c => c.Model).Include(c => c.Store);
             return View(await carDealershipWebsiteContext.ToListAsync());
         }
 
-        // GET: CarsStocks/Details/5
+        // GET: CarsStocksUser/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.CarsStocks == null)
@@ -50,33 +46,33 @@ namespace CarDealershipWebsite.Controllers
             return View(carsStock);
         }
 
-        // GET: CarsStocks/Create
+        // GET: CarsStocksUser/Create
         public IActionResult Create()
         {
-            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID");
-            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID");
+            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "Drivetrain");
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "Address");
             return View();
         }
 
-        // POST: CarsStocks/Create
+        // POST: CarsStocksUser/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StockID,CarsModelId,Year,Mileage,Sold,Price,StoreId,LicensePlate")] CarsStock carsStock)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(carsStock);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
-            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
+            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "Drivetrain", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "Address", carsStock.StoreId);
             return View(carsStock);
         }
 
-        // GET: CarsStocks/Edit/5
+        // GET: CarsStocksUser/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.CarsStocks == null)
@@ -89,12 +85,12 @@ namespace CarDealershipWebsite.Controllers
             {
                 return NotFound();
             }
-            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
-            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
+            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "Drivetrain", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "Address", carsStock.StoreId);
             return View(carsStock);
         }
 
-        // POST: CarsStocks/Edit/5
+        // POST: CarsStocksUser/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -106,7 +102,7 @@ namespace CarDealershipWebsite.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -126,12 +122,12 @@ namespace CarDealershipWebsite.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "ModelID", carsStock.CarsModelId);
-            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "StoreID", carsStock.StoreId);
+            ViewData["CarsModelId"] = new SelectList(_context.CarsModels, "ModelID", "Drivetrain", carsStock.CarsModelId);
+            ViewData["StoreId"] = new SelectList(_context.Stores, "StoreID", "Address", carsStock.StoreId);
             return View(carsStock);
         }
 
-        // GET: CarsStocks/Delete/5
+        // GET: CarsStocksUser/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.CarsStocks == null)
@@ -151,7 +147,7 @@ namespace CarDealershipWebsite.Controllers
             return View(carsStock);
         }
 
-        // POST: CarsStocks/Delete/5
+        // POST: CarsStocksUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

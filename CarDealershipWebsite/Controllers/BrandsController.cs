@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarDealershipWebsite.Areas.Identity.Data;
 using CarDealershipWebsite.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarDealershipWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandsController : Controller
     {
         private readonly CarDealershipWebsiteContext _context;

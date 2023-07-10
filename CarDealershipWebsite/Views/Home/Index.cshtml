@@ -1,4 +1,9 @@
-﻿@{
+﻿@using CarDealershipWebsite.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<CarDealershipWebsiteUser> SignInManager
+@inject UserManager<CarDealershipWebsiteUser> UserManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +11,41 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@if(User.IsInRole("Admin"))
+{
+    <u>Admin links to modify data</u>
+    <ul>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="CarsStocks" asp-action="Index">Car Stock</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="CarsModels" asp-action="Index">Car Models</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Staffs" asp-action="Index">Staffs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Stores" asp-action="Index">Store</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Index">Sale</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="SaleItems" asp-action="Index">Sale item</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Fuels" asp-action="Index">Fuel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Transmissions" asp-action="Index">Transmission</a>
+        </li>
+
+    </ul>
+}
