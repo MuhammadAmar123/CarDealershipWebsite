@@ -21,7 +21,6 @@ public class CarDealershipWebsiteContext : IdentityDbContext<CarDealershipWebsit
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-
     public DbSet<Brand> Brands { get; set; }
     public DbSet<CarsModel> CarsModels { get; set; }
     public DbSet<CarsStock> CarsStocks { get; set; }
@@ -32,5 +31,6 @@ public class CarDealershipWebsiteContext : IdentityDbContext<CarDealershipWebsit
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Staff> Staffs { get; set; }
     public DbSet<Store> Stores { get; set; }
+
 
 }
