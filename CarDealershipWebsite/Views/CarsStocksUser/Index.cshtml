@@ -3,17 +3,29 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<h1>Car Stock</h1>
 
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.Model)
+                @Html.DisplayNameFor(model => model.Model.BrandId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model.Seats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model.EngineSize)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model.Drivetrain)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Mileage)
@@ -25,7 +37,7 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Store)
+                @Html.DisplayNameFor(model => model.Store.City)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LicensePlate)
@@ -34,31 +46,46 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model.Drivetrain)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mileage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sold)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LicensePlate)
-            </td>
-            <td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.BrandId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Seats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.EngineSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.Drivetrain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mileage)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LicensePlate)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -40,5 +40,6 @@ namespace CarDealershipWebsite.Models
 
         public string LicensePlate { get; set; } = null!;
         public ICollection<SaleItem> SaleItems { get; set; } = new List<SaleItem>();
+
     }
 }

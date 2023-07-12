@@ -110,7 +110,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("BrandID");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.CarsModel", b =>
@@ -154,7 +154,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("TransmissionId");
 
-                    b.ToTable("CarsModels");
+                    b.ToTable("CarsModels", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.CarsStock", b =>
@@ -194,7 +194,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("CarsStocks");
+                    b.ToTable("CarsStocks", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Customer", b =>
@@ -236,7 +236,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("CustomerID");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Fuel", b =>
@@ -254,7 +254,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("FuelID");
 
-                    b.ToTable("Fuels");
+                    b.ToTable("Fuels", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Sale", b =>
@@ -275,7 +275,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Sales");
+                    b.ToTable("Sales", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.SaleItem", b =>
@@ -298,7 +298,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("SaleId");
 
-                    b.ToTable("SaleItems");
+                    b.ToTable("SaleItems", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Staff", b =>
@@ -345,7 +345,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Staffs");
+                    b.ToTable("Staffs", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Store", b =>
@@ -373,7 +373,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("StoreID");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
                 });
 
             modelBuilder.Entity("CarDealershipWebsite.Models.Transmission", b =>
@@ -391,7 +391,7 @@ namespace CarDealershipWebsite.Migrations
 
                     b.HasKey("TransmissionID");
 
-                    b.ToTable("Transmissions");
+                    b.ToTable("Transmissions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

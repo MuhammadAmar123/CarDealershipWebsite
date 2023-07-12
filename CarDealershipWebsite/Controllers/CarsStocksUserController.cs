@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,6 +23,7 @@ namespace CarDealershipWebsite.Controllers
         {
             var carDealershipWebsiteContext = _context.CarsStocks.Include(c => c.Model).Include(c => c.Store);
             return View(await carDealershipWebsiteContext.ToListAsync());
+
         }
 
         // GET: CarsStocksUser/Details/5
