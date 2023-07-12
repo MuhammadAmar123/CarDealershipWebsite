@@ -4,41 +4,41 @@ namespace CarDealershipWebsite.Models
 {
     public class Customer
     {
-        [Key]
-        public int CustomerID { get; set; }
-        [Required]
-        [StringLength(30, ErrorMessage = "characters must be 30 or less")]
-        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")]
-        [Display(Name = "First Name")]
+        [Key] // data annotation identifies that ModelID field is the primary key
+        public int CustomerID { get; set; } // creates the coloumn to store data
+        [Required] // requires user to fill in
+        [StringLength(30, ErrorMessage = "characters must be 30 or less")] // limits the amount of data that can be entered
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")] // defines a specific way of entering data
+        [Display(Name = "First Name")] // changes the display name to this
 
-        public string FirstName { get; set; } = null!;
-        [Required]
-        [StringLength(30, ErrorMessage = "characters must be 30 or less")]
-        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")]
-        [Display(Name = "Last Name")]
+        public string FirstName { get; set; } = null!; // creates the coloumn to store data
+        [Required] // requires user to fill in
+        [StringLength(30, ErrorMessage = "characters must be 30 or less")] // limits the amount of data that can be entered
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")] // defines a specific way of entering data
+        [Display(Name = "Last Name")] // changes the display name to this
 
-        public string LastName { get; set; } = null!;
-        [Required]
-        [StringLength(15, ErrorMessage = "characters must be 15 or less")]
-        [RegularExpression(@"^[0-9-]+$", ErrorMessage = "Please enter a valid phone number")]
-        [Display(Name = "Phone Number")]
+        public string LastName { get; set; } = null!; // creates the coloumn to store data
+        [Required] // requires user to fill in 
+        [StringLength(15, ErrorMessage = "characters must be 15 or less")] // limits the amount of data that can be entered
+        [RegularExpression(@"^[0-9-]+$", ErrorMessage = "Please enter a valid phone number")] // defines a specific way of entering data
+        [Display(Name = "Phone Number")] // changes the display name to this
 
-        public string PhoneNumber { get; set; } = null!;
-        [Required]
-        [StringLength(255, ErrorMessage = "characters must be 255 or less")]
-        [RegularExpression("^[0-9]{1,4}[a-zA-Z\\s]*$", ErrorMessage = "Please enter valid address")]
+        public string PhoneNumber { get; set; } = null!; // creates the coloumn to store data
+        [Required] // requires user to fill in
+        [StringLength(255, ErrorMessage = "characters must be 255 or less")] // limits the amount of data that can be entered
+        [RegularExpression("^[0-9]{1,4}[a-zA-Z\\s]*$", ErrorMessage = "Please enter valid address")] // defines a specific way of entering data
 
-        public string Address { get; set; } = null!;
-        [DataType(DataType.EmailAddress)]
-        [Required]
-        [Display(Name = "Email Address")]
-        
-        public string EmailAddress { get; set; } = null!;
-        [Required]
-        [StringLength(20, ErrorMessage = "characters must be 20 or less")]
-        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")]
+        public string Address { get; set; } = null!; // creates the coloumn to store data
+        [DataType(DataType.EmailAddress)] // changes the datatype
+        [Required] // requires user to fill in
+        [Display(Name = "Email Address")] // changes the display name to this
 
-        public string City { get; set; } = null!;
-        public ICollection<Sale> Sales { get; set; } = new List<Sale>();
+        public string EmailAddress { get; set; } = null!; // creates the coloumn to store data
+        [Required] // requires user to fill in
+        [StringLength(20, ErrorMessage = "characters must be 20 or less")] // limits the amount of data that can be entered
+        [RegularExpression("^[A-Z][a-zA-Z]*$", ErrorMessage = "The first letter must be capitalised and only letters are allowed")] // defines a specific way of entering data
+
+        public string City { get; set; } = null!; // creates the coloumn to store data
+        public ICollection<Sale> Sales { get; set; } = new List<Sale>(); // makes relationship that one customer can have many sales
     }
 }
