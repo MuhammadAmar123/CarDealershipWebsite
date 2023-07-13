@@ -5,7 +5,7 @@ namespace CarDealershipWebsite.Models
 {
     public class CarsStock
     {
-        [Key] // data annotation identifies that ModelID field is the primary key
+        [Key] // data annotation identifies that StockID field is the primary key
         public int StockID { get; set; } // creates the coloumn to store data
         [Display(Name = "Car Model Number")] // changes the display name to this
 

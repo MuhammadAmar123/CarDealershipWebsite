@@ -4,7 +4,7 @@ namespace CarDealershipWebsite.Models
 {
     public class Customer
     {
-        [Key] // data annotation identifies that ModelID field is the primary key
+        [Key] // data annotation identifies that CustomerID field is the primary key
         public int CustomerID { get; set; } // creates the coloumn to store data
         [Required] // requires user to fill in
         [StringLength(30, ErrorMessage = "characters must be 30 or less")] // limits the amount of data that can be entered

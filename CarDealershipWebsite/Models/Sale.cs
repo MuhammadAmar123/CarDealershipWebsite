@@ -5,19 +5,19 @@ namespace CarDealershipWebsite.Models
 {
     public class Sale
     {
-        [Key]
-        public int SaleID { get; set; }
-        [Display(Name = "Customer Number")]
+        [Key] // data annotation identifies that SaleID field is the primary key
+        public int SaleID { get; set; } // creates the coloumn to store data
+        [Display(Name = "Customer Number")] // changes the display name to this
 
-        public int CustomerId { get; set; }
-        [ForeignKey("CustomerId")]
-        [Display(Name = "Customer Number")]
-        public Customer Customer { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Sale Date")]
+        public int CustomerId { get; set; } // creates the coloumn to store data
+        [ForeignKey("CustomerId")] // sets this to foreign key
+        [Display(Name = "Customer Number")] // changes the display name to this
+        public Customer Customer { get; set; } // creates the coloumn to store data
+        [Required] // requires user to fill in
+        [DataType(DataType.Date)] // changes datatype to this
+        [Display(Name = "Sale Date")] // changes the display name to this
 
-        public DateTime SaleDate { get; set; }
+        public DateTime SaleDate { get; set; } // creates the coloumn to store data
         public ICollection<SaleItem> SaleItems { get; set; } = new List<SaleItem>();
     }
 }

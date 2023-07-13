@@ -23,10 +23,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>                   
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CarsStocksUser" asp-action="Index">Car Stock</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="CarsStocksUser" asp-action="Index">Car Stock</a> @*I added the button which leads to the car stock page*@
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="StoresUser" asp-action="Index">Stores</a> @*I added the button which leads to the stores page*@
                         </li>
                     </ul>
-                    <partial name = "_LoginPartial.cshtml"/>
+                    <partial name = "_LoginPartial.cshtml"/> @*added the login partial so that user can access register and login page*@
                 </div>
             </div>
         </nav>
@@ -39,7 +42,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - CarDealershipWebsite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - CarDealershipWebsite
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

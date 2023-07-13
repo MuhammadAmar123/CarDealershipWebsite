@@ -8,16 +8,16 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Supercheap Cars</h1>
-    <p>Where you will find the best deals</p>
+    <h1 class="display-4">Welcome to Supercheap Cars</h1> @*// changed the text to this*@
+    <p>Where you will find the best deals</p> @*// changed the text to this*@
 </div>
 
-@if(User.IsInRole("Admin"))
+@if(User.IsInRole("Admin")) // Only if the role of admin is logged in they can only see and access these properties
 {
-    <u>Admin links to modify data</u>
-    <ul>
+    <u>Admin links to modify data</u> 
+    <ul> @*all these properties lead to their respective razor pages*@
         <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="CarsStocks" asp-action="Index">Car Stock</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="CarsStocks" asp-action="Index">Car Stock</a> 
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
