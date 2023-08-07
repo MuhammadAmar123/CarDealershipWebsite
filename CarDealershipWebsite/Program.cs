@@ -62,6 +62,8 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CarDealershipWebsiteUser>>();
+            string firstname = "admin";
+            string lastname = "admin";
             string email = "admin@admin.com";
             string password = "Admin_54321";
 
@@ -70,6 +72,8 @@ public class Program
                 var user = new CarDealershipWebsiteUser();
                 user.UserName = email;
                 user.Email = email;
+                user.FirstName = firstname;
+                user.LastName = lastname;
 
 
                 await userManager.CreateAsync(user, password);
